@@ -26,6 +26,7 @@ class BlogNode:
             Generate a detailed blog content with detailed breakdown for the {topic}"""
             system_message = system_prompt.format(topic=state["topic"])
             response = self.llm.invoke(system_message)
+            print(response)
             return {"blog": {"title": state['blog']['title'], "content": response.content}}
 
         

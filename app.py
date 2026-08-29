@@ -12,23 +12,23 @@ app = FastAPI()
 class Topic(BaseModel):
     topic:str
 
+
+gemini_llm = GeminiLLM()
+llm = gemini_llm.get_llm()
+graph_builder = GraphBuilder(llm)
+graph = graph_builder.setup_graph(usecase="topic")
+
 @app.post("/blogs")
 async def create_blogs(request: Topic):
 
-
     topic = request.topic
     print(topic)
-
-
-    gemini_llm = GeminiLLM()
-    llm=gemini_llm.get_llm()
-
-    graph_builder = GraphBuilder(llm)
     if topic:
-        graph = graph_builder.setup_graph(usecase="topic")
-        state = graph.invoke({"topic":topic})
+        state = graph.invoke({"topic": topic})
+        return {"data": state}
+    return {"error": "No topic provided"}
 
-    return {"data":state}
+
 
 
 if __name__ == "__main__":

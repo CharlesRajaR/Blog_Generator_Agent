@@ -9,7 +9,7 @@ class GeminiLLM:
     def get_llm(self):
         try:
             os.environ["GOOGLE_API_KEY"] = self.gemini_api_key =  os.getenv("GOOGLE_API_KEY")
-            llm = ChatGoogleGenerativeAI(model="gemini-3.7-flash")
+            llm = ChatGoogleGenerativeAI(model="gemini-3.5-flash-lite")
             return llm
         except Exception as e:
             print(f"Unable to load llm : {e}")
