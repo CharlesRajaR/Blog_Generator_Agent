@@ -15,9 +15,9 @@ class GraphBuilder:
         self.graph.add_node("title_creation", self.blog_nodes.title_creation)
         self.graph.add_node("content_generation", self.blog_nodes.content_generation)
 
-        self.add_edge(START, "title_creation")
-        self.add_edge("title_creation", "content_generation")
-        self.add_edge("content_generation", END)
+        self.graph.add_edge(START, "title_creation")
+        self.graph.add_edge("title_creation", "content_generation")
+        self.graph.add_edge("content_generation", END)
 
         return self.graph
 
